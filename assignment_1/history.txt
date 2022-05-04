@@ -1,0 +1,203 @@
+    1  /cita/local/bin/passwd
+    2  logout
+    3  LS
+    4  ls
+    5  cd Documents/
+    6  pwd
+    7  exit
+    8  ls
+    9  cd Documents
+   10  ls
+   11  pwd
+   12  git clone https://github.com/bolverk/huji-rich.git .
+   13  ls
+   14  make set_environ_vars.sh && `cat set_environ_vars.sh`
+   15  make
+   16  ls
+   17  cd tests
+   18  pwd
+   19  make
+   20  python3 --version
+   21  python --version
+   22  alias python=python3
+   23  python --verion
+   24  python --version
+   25  unalias python
+   26  python --version
+   27  alias python=python3
+   28  pwd
+   29  make
+   30  unalias python
+   31  cd ~
+   32  pwd
+   33  gedit .bash_aliases
+   34  exit
+   35  cd Documents/
+   36  ls
+   37  cd tests/
+   38  python
+   39  cd ~
+   40  gedit .bash_aliases
+   41  cd Documents/
+   42  cd tests/
+   43  make
+   44  pwd
+   45  cd -
+   46  ls
+   47  cd Documents/
+   48  ls
+   49  exit
+   50  top
+   51  pwd
+   52  cd
+   53  pwd
+   54  cd home
+   55  cd /home
+   56  ls
+   57  cd akarlis
+   58  cd akaralis
+   59  ls
+   60  echo $0
+   61  ls -la
+   62  cd D
+   63  cd ~/murray
+   64  cd -murray
+   65  cd /home/murray
+   66  ls
+   67  cd papers
+   68  ls
+   69  pwd
+   70  cd ~murray
+   71  cd Papers
+   72  ls
+   73  ls -la
+   74  ls -la sfh_vs_fbmodel.pdf
+   75  ls
+   76  pwd
+   77  cd ../
+   78  ls
+   79  cd Papers
+   80  history
+   81  pwd
+   82  cd Hopkins/All_Feedback/second_draft/
+   83  evince sfh_vs_fbmodel.pdf 
+   84  whoami
+   85  cd ~
+   86  pwd
+   87  cd -/murray
+   88  cd ~/murray
+   89  cd ~murray
+   90  cd Papers
+   91  cd Hopkins/All_Feedback/second_draft/
+   92  ls | grep ms
+   93  ls
+   94  cd ~
+   95  ls
+   96  cd Documents/
+   97  mkdir CTA200
+   98  ls
+   99  cd CTA200/
+  100  vim test.txt
+  101  m test.txt 
+  102  evince test.txt 
+  103  emacs
+  104  logout
+  105  cd scratch-lustre
+  106  cd scratch
+  107  cd /scratch
+  108  ls
+  109  pwd
+  110  mkdir CTA200_2022
+  111  ls
+  112  mkdir assignment_1
+  113  vim README.md
+  114  more README.md 
+  115  cd ~murray
+  116  find . -name Hello_world.c
+  117  pwd
+  118  ls
+  119  find . -name Hello_world.c
+  120  find . -name "Hello_world.c" -print
+  121  cd ./Papers/tmp
+  122  ls
+  123  pwd
+  124  cd /scratch lustre
+  125  cd /scratch-lustre
+  126  pwd
+  127  cd home
+  128  cd /home
+  129  pwd
+  130  ls
+  131  cd akaralis
+  132  ls
+  133  cd /scratch-lustre
+  134  cd /
+  135  ls
+  136  cd mnt
+  137  ls
+  138  cd scratch-lustre/
+  139  ls
+  140  cd akaralis
+  141  ls
+  142  mkdir CTA200_2022
+  143  mkdir assignment_1
+  144  ls
+  145  rmdir assignment_1
+  146  ls
+  147  cd CTA200_2022/
+  148  mkdir assignment_1
+  149  ls
+  150  vi README.md
+  151  more README.md 
+  152  pwd
+  153  cd ~murray
+  154  cd ./Papers/tmp
+  155  ls
+  156  cp Hello_world.c /mnt/scratch-lustre/akaralis/CTA200_2022
+  157  cd ~murray
+  158  find . -name "Hello_world.py"
+  159  cd tmp
+  160  ls
+  161  cp Hello_world.py /mnt/scratch-lustre/akaralis/CTA200_2022
+  162  cd /mnt/scratch-lustre/akaralis/CTA200_2022
+  163  ls
+  164  mv Hello_world.c assignment_1
+  165  ls
+  166  mv Hello_world.py assignment_1
+  167  ls
+  168  cd assignment_1/
+  169  ls
+  170  mv Hello_world.c Hello_world_karalis.c
+  171  ls
+  172  mv Hello_world.py Hello_world_karalis.py
+  173  ls
+  174  gcc Hello_world_karalis.c
+  175  gcc Hello_world_karalis.c Hello_world.x
+  176  ls
+  177* gcc Hello_world_karalis
+  178  ls
+  179  rm a.out
+  180  ls
+  181  Hello_world.x
+  182  ./Hello_world.x 
+  183  python3 Hello_world_karalis.py
+  184  module load python
+  185  python Hello_world_karalis.py
+  186  vi Hello_world_karalis.c
+  187  vi Hello_world_karalis.py
+  188  gcc Hello_world_karalis.c Hello_world.x
+  189  gcc Hello_world_karalis.c -o Hello_world.x
+  190  Hello_world.x
+  191  ./Hello_world.x 
+  192  python Hello_world_karalis.py
+  193  vi Hello_world_karalis.py
+  194  python Hello_world_karalis.py
+  195  vi Hello_world_karalis.c
+  196  gcc Hello_world_karalis.c -o output_c.x
+  197  ./output_c.x 
+  198  python Hello_world_karalis.py output_python.txt
+  199  ls
+  200  python Hello_world_karalis.py > output_python.txt
+  201  ls
+  202  history
+  203  history > history.txt
