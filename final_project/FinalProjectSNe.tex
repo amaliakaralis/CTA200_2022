@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
+
+
+
+\title {Final Project  \\[1ex] \large Amalia Karalis \\[1ex] \large Supervised by Dr. Almog Yalinewich}
+
+\date{}
+\begin{document}
+
+\maketitle
+\section{Plotting the Hydrodynamic Parameters for a Single Snapshot}
+Using the \href{https://github.com/bolverk/huji-rich/wiki}{\texttt{huji-rich} code} for hydrodynamic simulations, we simulate a 1-dimensional Sedov-Taylor explosion. The initial conditions are a uniform density of 1, uniform x and y velocity of 0 and step function for the pressure, where the pressure within the hotspot of the explosion, which taken to be at 0.1, is 100, and outside the hospot is $10^{-9}$. The pressure inside is taken to be non-zero since a pressure of 0 would result in a hollow explosion, causing the code to crash. An example plot is shown in Figure \ref{fig: Hydro_Final}.
+
+\begin{figure}[ht!]
+    \includegraphics[scale = 1]{Hydro_final.pdf} 
+    \centering
+    \caption{The hydrodynamic parameters at the end of a simulation. The shock front is seen where the pressure, density and velocity peak.}
+    \label{fig: Hydro_Final}
+\end{figure}
+
+
+\section{Shock Trajectory for Instantaneous Release of Energy}
+\subsection{Fitting the Shock Front Trajectory}
+We track the position of the shock front using a peakfinder, which picks out the position on the grid where the hydrodynamic parameters peak. However, since the grid resolution limits the precision with which we can determine the position of the front, we choose 5 points around the grid peak and fit them to a parabola. The shock position is taken to be the peak of this parabola. This is done for each of the 100 snapshots taken at equal time intervals throughout the simulation. The trajectory of the shock front is plotted and fit to a power law of the form
+\begin{equation}
+    R = a*t^b
+\end{equation}
+where R is the position, t is time, a is the prefactor and b is the slope of the power law. The Sedov-Taylor solution predicts a relation between the position of the shock front and time:
+\begin{equation} \label{eq: ST_traj}
+    R \propto \left[ \frac{E}{\rho} \right]^{1/5} t^{2/5}
+\end{equation}
+where E is the energy of the explosion and $\rho$ is the density of the medium. When fitting the power law to the trajectory of the shock front, the first few datapoints were discarded since it takes some time for the energy to seep out of the hotspot and to converge onto the Sedov-Taylor solution. Figure \ref{fig:Shock_Trajectory} shows the shock front trajectory and the power law fit for various energies. The fitted values for the slope were found to be around 0.40-0.42, in agreement with the expected value from the analytical solution in Equation \ref{eq: ST_traj} of 0.4.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[scale=0.75]{Shock_Trajectory.pdf}
+    \caption{The shock front trajectory and the fitted power-law for various energy values.}
+    \label{fig:Shock_Trajectory}
+\end{figure}
+
+\subsection{Fitting the Pre-Factors}
+The prefactors for each simulation are plotted as a function of the energy in Figure \ref{fig: PreFac_vs_En}. We again fit a power law to these values. We find a power-law slope of 0.20, in agreement with the expected 1/5 from the analytic Sedov-Taylor solution in Equation \ref{eq: ST_traj}, which shows that the prefactor $a\propto [E/\rho]^{1/5}$. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.8]{PreFac_vs_En.pdf}
+    \caption{The power-law prefactors as a function of energy for all simulations presented above. A power-law is fit to these values and a slope of 0.20 is found, in agreement with the value expected by the analytic Sedov-Taylor solution.}
+    \label{fig: PreFac_vs_En}
+\end{figure}
+
+\section{Shock Trajectory for Continuous Energy Injection}
+\subsection{Fitting the Shock Front Trajectory}
+Energy is injected into the system throughout the entire simulation by defining a constant luminosity. Here, Equation \ref{eq: ST_traj} becomes
+\begin{equation}\label{eq: EnInj_ST_traj}
+    R \propto \left[ \frac{L}{\rho} \right]^{1/5} t^{3/5}
+\end{equation}
+where L is the luminosity. We simulate this continuous injection of energy by holding the pressure within the hotspot at a large value throughout the simulation. In order to determine, at each timestep, how much pressure is to be added to the cells within the hotspot, we calculate the energy
+\begin{equation}
+    E = L*t = \left[ \rho R^5 L^2 \right]^{1/3}
+\end{equation}
+and the volume 
+\begin{equation}
+    V = \frac{4\pi R^3}{3}
+\end{equation}
+of the hotspot to obtain
+\begin{equation}
+    P_{extra} = \frac{E}{V} = \left[ \frac{\rho L^2}{R^4} \right]^{1/3}
+\end{equation}
+where R is the radius of the hotspot and $\rho$ is the density. We find that energy injection creates a hollow explosion, where the density rapidly drops, approaching 0. To prevent our simulation from running indefinitely, we set a floor value for the density, below which we do not allow the density to drop at any point in the simulation. We simulated explosions for various luminosities and fit the data to a power law, as shown in Figure \ref{fig: EnInj_Shock_traj}. Using \texttt{curve\_fit} from \texttt{scipy}'s \texttt{optimize}, we find power law slopes of 0.59-0.69, which agree with the expected value of 0.6 from Equation \ref{eq: EnInj_ST_traj}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.75]{EnInj_Shock_Traj.pdf}
+    \caption{The shock front trajectory and the fitted power-law for various luminosity values.}
+    \label{fig: EnInj_Shock_traj}
+\end{figure}
+
+
+\subsection{Fitting the Pre-Factors}
+The power-law prefactors from each simulation as a function of the luminosity can be modelled by a power-law, where we expect the slope to be 0.2 from Equation \ref{eq: EnInj_ST_traj}, which says that the prefactor $a \propto \left[ \frac{L}{\rho} \right]$. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.8]{PreFac_vs_Lum.pdf}
+    \caption{The power-law prefactors as a function of luminosity for all simulations presented above. A power-law is fit to these values and a slope of 0.21 is found, in agreement with the value expected by the analytic Sedov-Taylor solution.}
+    \label{fig: PreFac_vs_Lum}
+\end{figure}
+Figure \ref{fig: PreFac_vs_Lum} shows the power-law fit to the prefactor vs. luminosity values from 5 simulations. We obtain a value of 0.21 for the power-law slope, which agrees with the analytical value from the Sedov-Taylor solution of 0.20.
+ 
+\end{document}
+
+
+
+
